@@ -1,0 +1,15 @@
+{
+  "name": "hk-addin",
+  "version": "1.0.0",
+  "description": "server to serve html for web addin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Abhishek V",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
