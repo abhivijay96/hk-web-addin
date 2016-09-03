@@ -1,4 +1,4 @@
-﻿
+
 (function () {
   "use strict";
 
@@ -75,8 +75,9 @@
   function send(template) {
       var response = JSON.parse(template);
       var body = getBody(response["Body"]);
-      Office.context.mailbox.item.displayReplyForm(body);
-      localStorage.clear();
+      var reply = Office.context.mailbox.item.displayReplyForm(body);
+      reply.subject = response["Subject"];
+      reply.cc = response["CC"];
   }
 
   function getBody(body)
