@@ -11,6 +11,12 @@
       messageBanner = new fabric.MessageBanner(element);
       messageBanner.hideBanner();
       loadProps();
+      var day = new Date();
+      var old = Date.parse(localStorage["fetched"]);
+      var diff = Math.ceil((day - old) / (24*60*60*1000))
+      if( diff >= 7)
+        localStorage.clear();
+
     });
   };
 
@@ -66,6 +72,8 @@
               localStorage["recruit"] = this.responseText;
           send(this.responseText);
           ga("sent");
+          var day = new Date();
+          localStorage["fetched"] = day; 
       }
 
       var oReq = new XMLHttpRequest();
@@ -76,13 +84,15 @@
 
   function ga(eve){
       function listener(){
-          showNotification("RES",this.responseText);
+          if (this.readyState == 4) {
+            showNotification("Res",this.status);
+        }
       }
 
       var req = new XMLHttpRequest();
-      req.addEventListener("load",listener);
+      req.onreadystatechange = listener;
       req.open("POST","https://www.google-analytics.com/collect");
-      let data = "v=1&t=event&tid=UA-81367328-1&cid=1";
+      var data = "v=1&t=event&tid=UA-81367328-1&cid=1";
        data += "&ec=" + Office.mailbox.userProfile.emailAddress + "&el=Used Add in" + "&ev=1";
        data += "&ea=" + eve;
        req.send(data);
