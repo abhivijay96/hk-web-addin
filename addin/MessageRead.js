@@ -11,11 +11,13 @@
       messageBanner = new fabric.MessageBanner(element);
       messageBanner.hideBanner();
       loadProps();
+      if(localStorage["fetched"] != null){
       var day = new Date();
       var old = Date.parse(localStorage["fetched"]);
       var diff = Math.ceil((day - old) / (24*60*60*1000))
       if( diff >= 7)
         localStorage.clear();
+      }
 
     });
   };
