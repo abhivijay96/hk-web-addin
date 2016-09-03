@@ -11,7 +11,6 @@
       messageBanner = new fabric.MessageBanner(element);
       messageBanner.hideBanner();
       loadProps();
-       
     });
   };
 
@@ -36,6 +35,7 @@
         else
         {
             send(localStorage["intern"]);
+            ga("sent");
         }
         
     }
@@ -51,6 +51,7 @@
         else
         {
             send(localStorage["recruit"]);
+            ga("sent");
         }
         
     }
@@ -64,6 +65,7 @@
           else
               localStorage["recruit"] = this.responseText;
           send(this.responseText);
+          ga("sent");
       }
 
       var oReq = new XMLHttpRequest();
@@ -72,12 +74,24 @@
       oReq.send();
   }
 
+  function ga(eve){
+      function listener(){
+          showNotification("RES",this.responseText);
+      }
+
+      var req = new XMLHttpRequest();
+      req.addEventListener("load",listener);
+      req.open("POST","https://www.google-analytics.com/collect");
+      let data = "v=1&t=event&tid=UA-81367328-1&cid=1";
+       data += "&ec=" + Office.mailbox.userProfile.emailAddress + "&el=Used Add in" + "&ev=1";
+       data += "&ea=" + eve;
+       req.send(data);
+  }
+
   function send(template) {
       var response = JSON.parse(template);
       var body = getBody(response["Body"]);
       var reply = Office.context.mailbox.item.displayReplyForm(body);
-      reply.subject = response["Subject"];
-      reply.cc = response["CC"];
   }
 
   function getBody(body)
