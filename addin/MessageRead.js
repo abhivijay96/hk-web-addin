@@ -92,7 +92,7 @@
       req.onreadystatechange = listener;
       req.open("POST","https://www.google-analytics.com/collect");
       var data = "v=1&t=event&tid=UA-81367328-1&cid=1";
-       data += "&ec=" + Office.mailbox.userProfile.emailAddress + "&el=Used Add in" + "&ev=1";
+       data += "&ec=" + Office.context.mailbox.userProfile.emailAddress + "&el=Used Add in" + "&ev=1";
        data += "&ea=" + eve;
        req.send(data);
   }
