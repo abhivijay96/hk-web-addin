@@ -84,9 +84,8 @@
 
   function ga(eve){
       function listener(){
-          if (this.readyState == 4) {
-            showNotification("Res",this.status);
-        }
+          if (this.readyState == 4) 
+            showNotification("Res",this.status);
       }
 
       var req = new XMLHttpRequest();
