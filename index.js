@@ -34,6 +34,7 @@ app.get('/template/:email', function(req, res, next){
     {
         res.statusCode = 401;
         res.end();
+        return;
     }
 
     var options = {
