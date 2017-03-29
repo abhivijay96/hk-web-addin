@@ -29,9 +29,6 @@
       var item = Office.context.mailbox.item;
       var address = Office.context.mailbox.userProfile.emailAddress;
      
-      $("#intern").click(handleIntern);
-      $("#recruit").click(handleRecruit);
-     
     
     function handleIntern()
       {
@@ -63,6 +60,9 @@
         }
         
     }
+
+      $("#intern").click(handleIntern);
+      $("#recruit").click(handleRecruit);
 
   }
 
