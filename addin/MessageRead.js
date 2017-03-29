@@ -80,7 +80,7 @@
 
       var oReq = new XMLHttpRequest();
       oReq.addEventListener("load", reqListener);
-      oReq.open("GET", "https://raw.githubusercontent.com/higherknowledge/outlook-integration/master/templates/" + Office.context.mailbox.userProfile.emailAddress + (flag == 1 ? "" : "R"));
+      oReq.open("GET", "https://web-addin.herokuapp.com/template/" + Office.context.mailbox.userProfile.emailAddress + (flag == 1 ? "" : "R"));
       oReq.send();
   }
 

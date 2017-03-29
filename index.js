@@ -36,6 +36,7 @@ app.get('/template/:email', function(req, res, next){
         res.end();
         return;
     }
+    
     console.log("/higherknowledge/outlook-integration/master/templates/" + req.params.email);
     var options = {
     "method": "GET",
