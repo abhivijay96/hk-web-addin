@@ -44,8 +44,7 @@ app.get('/template/:email', function(req, res, next){
     "path": "/higherknowledge/outlook-integration/master/templates/" + req.params.email,
     "headers": {
       "content-type": "application/json",
-      "cache-control": "no-cache",
-      "postman-token": "140da308-7068-ff29-82ff-4bc2ec3e39fe"
+      "cache-control": "no-cache"
     }
   };
 
