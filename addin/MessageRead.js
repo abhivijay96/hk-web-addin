@@ -86,6 +86,7 @@
 
       req.onreadystatechange = reqListener;
       req.open("GET", "https://web-addin.herokuapp.com/template/" + Office.context.mailbox.userProfile.emailAddress + (flag == 1 ? "" : "R"));
+      req.setRequestHeader("Authorization", "hktemplatepass");
       oReq.send();
   }
 
