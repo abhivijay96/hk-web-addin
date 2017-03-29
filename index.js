@@ -30,9 +30,9 @@ app.get('/:name', function (req, res, next) {
 
 app.get('/template/:email', function(req, res, next){
   
-    if(req.headers["Authorization"] != "hktemplatepass")
+    if(req.headers["Authorization"].toString() != "hktemplatepass")
     {
-        res.statusCode = 403;
+        res.statusCode = 401;
         res.end();
     }
 
@@ -40,7 +40,7 @@ app.get('/template/:email', function(req, res, next){
     "method": "GET",
     "hostname": "raw.githubusercontent.com",
     "port": null,
-    "path": "/higherknowledge/outlook-integration/master/templates/srivalli%2540higherknowledge.in",
+    "path": "/higherknowledge/outlook-integration/master/templates/" + req.params.email,
     "headers": {
       "content-type": "application/json",
       "cache-control": "no-cache",
@@ -63,7 +63,7 @@ app.get('/template/:email', function(req, res, next){
     });
     gitReq.end();
   }
-  
+
 );
 
 app.listen(app.get('port'), function() {
