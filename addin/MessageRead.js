@@ -31,6 +31,7 @@
     
     function handleIntern()
       {
+          console.log("clicked intern");
         
         if(localStorage["intern"] == null)
         {
@@ -48,6 +49,7 @@
 
     function handleRecruit()
     {
+        console.log("clicked recruit");
         if(localStorage["recruit"] == null)
         {
             fetchTemp(2);
