@@ -71,6 +71,7 @@
       var req = new XMLHttpRequest();
 
       function reqListener() {
+          alert("hi");
           if(req.readyState == req.DONE && req.status == 200)
           {
               if (flag == 1)
