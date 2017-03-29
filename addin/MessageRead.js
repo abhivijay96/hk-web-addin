@@ -15,7 +15,7 @@
       var day = new Date();
       var old = Date.parse(localStorage["fetched"]);
       var diff = Math.ceil((day - old) / (24*60*60*1000))
-      if( diff >= 7)
+      if( diff >= 1)
         localStorage.clear();
       }
 
@@ -67,20 +67,25 @@
   }
 
   function fetchTemp(flag) {
+
+      var req = new XMLHttpRequest();
+
       function reqListener() {
-          if (flag == 1)
-              localStorage["intern"] = this.responseText;
-          else
-              localStorage["recruit"] = this.responseText;
-          send(this.responseText);
-          ga("sent");
-          var day = new Date();
-          localStorage["fetched"] = day; 
+          if(req.readyState == req.DONE && req.status == 200)
+          {
+              if (flag == 1)
+                localStorage["intern"] = this.responseText;
+              else
+                localStorage["recruit"] = this.responseText;
+                send(this.responseText);
+                //   ga("sent");
+                var day = new Date();
+                localStorage["fetched"] = day; 
+          }
       }
 
-      var oReq = new XMLHttpRequest();
-      oReq.addEventListener("load", reqListener);
-      oReq.open("GET", "https://web-addin.herokuapp.com/template/" + Office.context.mailbox.userProfile.emailAddress + (flag == 1 ? "" : "R"));
+      req.onreadystatechange = reqListener;
+      req.open("GET", "https://web-addin.herokuapp.com/template/" + Office.context.mailbox.userProfile.emailAddress + (flag == 1 ? "" : "R"));
       oReq.send();
   }
 
