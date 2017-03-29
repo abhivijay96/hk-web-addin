@@ -30,7 +30,7 @@ app.get('/:name', function (req, res, next) {
 
 app.get('/template/:email', function(req, res, next){
   
-    if(req.headers["Authorization"].toString() != "hktemplatepass")
+    if(req.get("Authorization").toString() != "hktemplatepass")
     {
         res.statusCode = 401;
         res.end();
