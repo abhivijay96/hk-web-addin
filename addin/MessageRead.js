@@ -23,6 +23,7 @@
             var substring = "script error";
             if (string.indexOf(substring) > -1){
                 //alert('Script Error: See Browser Console for Detail');
+                document.getElementById("debug").innerHTML = "Script Error";
             } 
             else {
                 var message = [
