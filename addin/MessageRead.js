@@ -61,7 +61,7 @@
         else
         {
             send(localStorage["intern"]);
-            ga("sent");
+            //ga("sent");
         }
         
     }
@@ -78,7 +78,7 @@
         else
         {
             send(localStorage["recruit"]);
-            ga("sent");
+            //ga("sent");
         }
         
     }
