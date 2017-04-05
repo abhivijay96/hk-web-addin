@@ -66,6 +66,7 @@ app.get('/template/:email', function(req, res, next){
 
       gitRes.on("end", function () {
         var body = Buffer.concat(chunks);
+        
         res.write(body.toString());
         res.end();
       });

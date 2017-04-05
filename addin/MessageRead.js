@@ -10,13 +10,7 @@
       messageBanner = new fabric.MessageBanner(element);
       messageBanner.hideBanner();
       loadProps();
-      if(localStorage["fetched"] != null){
-      var day = new Date();
-      var old = Date.parse(localStorage["fetched"]);
-      var diff = Math.ceil((day - old) / (24*60*60*1000))
-      if( diff >= 1)
-        localStorage.clear();
-      }
+
       let debug = document.getElementById("debug");
       debug.innerHTML = "Debug Div"
       window.onerror = function (msg, url, lineNo, columnNo, error) {
@@ -48,22 +42,18 @@
   function loadProps() {
       var item = Office.context.mailbox.item;
       var address = Office.context.mailbox.userProfile.emailAddress;
-     
     
     function handleIntern()
       {
-          console.log("clicked intern");
-        
-        if(localStorage["intern"] == null)
+        if(localStorage["intern"] == null && localStorage["intern"].toString().length < 25)
         {
             fetchTemp(1);
         }
+
         else
         {
             send(localStorage["intern"]);
-            //ga("sent");
-        }
-        
+        }      
     }
 
     
@@ -71,7 +61,7 @@
     function handleRecruit()
     {
         console.log("clicked recruit");
-        if(localStorage["recruit"] == null)
+        if(localStorage["recruit"] == null && localStorage["recruit"].toString().length < 25)
         {
             fetchTemp(2);
         }
