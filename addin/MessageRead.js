@@ -45,7 +45,7 @@
     
     function handleIntern()
       {
-        if(localStorage["intern"] == null && localStorage["intern"].toString().length < 25)
+        if(localStorage["intern"] != undefined && localStorage["hasIntern"])
         {
             fetchTemp(1);
         }
@@ -61,7 +61,7 @@
     function handleRecruit()
     {
         console.log("clicked recruit");
-        if(localStorage["recruit"] == null && localStorage["recruit"].toString().length < 25)
+        if(localStorage["recruit"] != undefined && localStorage["hasRecruit"])
         {
             fetchTemp(2);
         }
@@ -86,9 +86,15 @@
           if(req.readyState == req.DONE && req.status == 200)
           {
               if (flag == 1)
-                localStorage["intern"] = this.responseText;
+               {
+                     localStorage["intern"] = this.responseText;
+                     localStorage["hasIntern"] = true;
+               }
               else
-                localStorage["recruit"] = this.responseText;
+               {
+                     localStorage["recruit"] = this.responseText;
+                     localStorage["hasRecruit"] = true;
+               }
                 send(this.responseText);
                 //   ga("sent");
                 var day = new Date();
