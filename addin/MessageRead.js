@@ -45,15 +45,15 @@
     
     function handleIntern()
       {
-        if(localStorage["intern"] == undefined && !localStorage["hasIntern"])
+        //if(localStorage["intern"] == undefined && !localStorage["hasIntern"])
         {
             fetchTemp(1);
         }
 
-        else
-        {
-            send(localStorage["intern"]);
-        }      
+        // else
+        // {
+        //     send(localStorage["intern"]);
+        // }      
     }
 
     
@@ -61,16 +61,15 @@
     function handleRecruit()
     {
         console.log("clicked recruit");
-        if(localStorage["recruit"] == undefined && !localStorage["hasRecruit"])
+        //if(localStorage["recruit"] == undefined && !localStorage["hasRecruit"])
         {
             fetchTemp(2);
         }
-        else
-        {
-            send(localStorage["recruit"]);
-            //ga("sent");
-        }
-        
+        // else
+        // {
+        //     send(localStorage["recruit"]);
+        //     //ga("sent");
+        // }
     }
 
       $("#intern").click(handleIntern);
