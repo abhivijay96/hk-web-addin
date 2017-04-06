@@ -45,7 +45,7 @@
     
     function handleIntern()
       {
-        if(localStorage["intern"] != undefined && localStorage["hasIntern"])
+        if(localStorage["intern"] == undefined && !localStorage["hasIntern"])
         {
             fetchTemp(1);
         }
@@ -61,7 +61,7 @@
     function handleRecruit()
     {
         console.log("clicked recruit");
-        if(localStorage["recruit"] != undefined && localStorage["hasRecruit"])
+        if(localStorage["recruit"] == undefined && !localStorage["hasRecruit"])
         {
             fetchTemp(2);
         }
