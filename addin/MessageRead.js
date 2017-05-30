@@ -12,7 +12,7 @@
       loadProps();
 
       let debug = document.getElementById("debug");
-      debug.innerHTML = "Debug Div"
+      debug.innerHTML = ""
       window.onerror = function (msg, url, lineNo, columnNo, error) {
             var string = msg.toLowerCase();
             var substring = "script error";
