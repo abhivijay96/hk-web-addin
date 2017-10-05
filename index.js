@@ -12,29 +12,30 @@ app.options('/*', function(req, res, next)
 }
 );
 
-app.get('/:name', function (req, res, next) {
+app.use(express.static('addin'));
+// app.get('/:name', function (req, res, next) {
 
-  var options = {
-    root: __dirname + '/addin/',
-    dotfiles: 'deny',
-    headers: {
-        'x-timestamp': Date.now(),
-        'x-sent': true
-    }
-  };
+//   var options = {
+//     root: __dirname + '/addin/',
+//     dotfiles: 'deny',
+//     headers: {
+//         'x-timestamp': Date.now(),
+//         'x-sent': true
+//     }
+//   };
 
-  var fileName = req.params.name;
-  res.sendFile(fileName, options, function (err) {
-    if (err) {
-      console.log(err);
-      res.status(err.status).end();
-    }
-    else {
-      console.log('Sent:', fileName);
-    }
-  });
+//   var fileName = req.params.name;
+//   res.sendFile(fileName, options, function (err) {
+//     if (err) {
+//       console.log(err);
+//       res.status(err.status).end();
+//     }
+//     else {
+//       console.log('Sent:', fileName);
+//     }
+//   });
 
-});
+// });
 
 app.get('/template/:email', function(req, res, next){
   
