@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var http = require('https');
+var qs = require("querystring");
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -37,6 +38,41 @@ app.use(express.static('addin'));
 
 // });
 
+function sendGoogleAnalytics(email, type)
+{
+  var options = {
+    "method": "POST",
+    "hostname": "www.google-analytics.com",
+    "port": null,
+    "path": "/collect",
+    "headers": {
+      "content-type": "application/x-www-form-urlencoded"
+    }
+  };
+  
+  var req = http.request(options, function (res) {
+    var chunks = [];
+  
+    res.on("data", function (chunk) {
+      chunks.push(chunk);
+    });
+  
+    res.on("end", function () {
+      var body = Buffer.concat(chunks);
+      console.log(body.toString());
+    });
+  });
+  
+  req.write(qs.stringify({ v: '1',
+    t: 'event',
+    tid: 'UA-81367328-1',
+    cid: '1',
+    ec: type,
+    el: "fetched",
+    ea: email }));
+  req.end();
+}
+
 app.get('/template/:email', function(req, res, next){
   
     if(req.get("Authorization").toString() != "hktemplatepass")
@@ -70,6 +106,7 @@ app.get('/template/:email', function(req, res, next){
         
         res.write(body.toString());
         res.end();
+        sendGoogleAnalytics(req.params.email, 'used addin');
       });
     });
     gitReq.end();
