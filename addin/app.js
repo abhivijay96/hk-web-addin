@@ -42,7 +42,6 @@
 
   function handleIntern() {
     fetchTemp(1);
-    console.log('intern clicked');
   }
 
 
